@@ -12,14 +12,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useProfileStore } from '@/stores/profile'
-import { useGroupStore } from '@/stores/group'
-import { useCycleStore } from '@/stores/cycle'
 import { ref, watch } from 'vue'
 import { vuetify } from '@/plugins/vuetify'
 
 const error = ref('')
 const loading = ref(true)
-Promise.all([useProfileStore().fetch(), useGroupStore().fetch(), useCycleStore().fetch()])
+Promise.all([useProfileStore().fetch()])
   .catch((err) => {
     error.value = err
     console.error(error)
