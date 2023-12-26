@@ -1,15 +1,25 @@
 import { Timestamp } from 'firebase/firestore'
 
+export interface ISlot {
+  name: string
+  memberId: string
+  skills: {
+    [skillId: string]: boolean
+  }
+}
+
+export interface ITask {
+  title: string
+  slots: ISlot[]
+  datetime: { start: Timestamp; end: Timestamp }
+}
+
 export interface INewCycle {
   id?: string
   groupId: string
   start: Timestamp
   end: Timestamp
-  tasks: {
-    title: string
-    slots: { name: string; memberId: string }[]
-    datetime: { start: Timestamp; end: Timestamp }
-  }[]
+  tasks: ITask[]
   createdAt?: Timestamp
   updatedAt?: Timestamp
 }

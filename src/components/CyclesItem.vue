@@ -27,7 +27,7 @@
         </div>
         <div
           v-else-if="
-            tasksByDay.days[resetTime((item['0'] as Item).datetime?.start.toDate()).getTime()]
+            tasksByDay.days[resetTime((item['0'] as ITask).datetime?.start.toDate()).getTime()]
               ?.ticks[pos]
           "
           class="text-start"
@@ -43,11 +43,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Timestamp } from 'firebase/firestore'
 import { getDates, resetTime } from '@/plugins/dates'
 import { useI18n } from 'vue-i18n'
 import type { PropType } from 'vue'
-import type { ICycle } from '@/stores/cycle/types'
+import type { ICycle, ITask } from '@/stores/cycle/types'
 const search = ref('')
 const { locale } = useI18n()
 
@@ -82,14 +81,7 @@ type Tick = {
   title: string
 }
 
-type Item = {
-  // day: number
-  title: string
-  slots: { name: string; skills: { [skillId: string]: boolean } }[]
-  datetime: { start: Timestamp; end: Timestamp }
-}
-
-const tasksByDay = (props.cycle.tasks as Item[]).reduce(
+const tasksByDay = props.cycle.tasks.reduce(
   (acc, v) => {
     const startDate = v.datetime.start.toDate()
     const endDate = v.datetime.end.toDate()
@@ -133,13 +125,13 @@ const tasksByDay = (props.cycle.tasks as Item[]).reduce(
     days: {
       [day: string]: {
         ticks: { [pos: string]: Tick }
-        items: { [time: string]: { [pos: string]: Item } }
+        items: { [time: string]: { [pos: string]: ITask } }
       }
     }
   }
 )
 
-type TRow = { [pos: string]: Item | Tick }
+type TRow = { [pos: string]: ITask | Tick }
 const rows: TRow[] = []
 
 const dates = getDates(props.cycle.start.toDate(), props.cycle.end.toDate())

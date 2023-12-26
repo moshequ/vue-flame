@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "setup": "npm i && cd functions && npm i && npm run build",
+    "setup": "npm i && npm run build && cd functions && npm i && npm run build",
     "clean": "rm -rf package-lock.json node_modules dist && cd functions && rm -rf package-lock.json node_modules dist",
     "dev": "vite",
     "emulators:dev": "firebase emulators:exec \"npm run dev\" --project=demo-vueflame --import=./seed/local --export-on-exit --ui --inspect-functions",

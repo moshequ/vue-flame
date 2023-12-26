@@ -389,7 +389,7 @@ const useStore: StoreDefinition<typeof storeName, IState, Getters, Actions> = de
               }
             ]
           }
-          store.list = data.cycles
+          store.list = data.cycles as ICycle[]
           store.loading = false
           return store.list
         } catch (error: unknown) {
