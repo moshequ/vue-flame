@@ -6,10 +6,10 @@ export const getLocaleRoutes = (
 ): Readonly<RouteRecordRaw[]> => {
   const localePath = '/:locale'
   return [
-    {
-      path: '',
-      redirect: localePath
-    },
+    // {
+    //   path: '',
+    //   redirect: localePath
+    // },
     {
       path: localePath,
       component: RouterView,
