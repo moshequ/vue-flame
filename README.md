@@ -23,7 +23,7 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
-clone this project and find and replace `vueflame` with your firebase project name (keep the case sensitivity e.g. `vueflame` -> `myproject` and `Vueflame` -> `Myproject` etc.)
+Remove this line after completion: Clone this project and find and replace `vueflame` with your firebase project name (keep the case sensitivity e.g. `vueflame` -> `myproject` and `Vueflame` -> `Myproject` etc.)
 
 Copy [.env.example](.env.example) to `.env` and fill in the values, note that `VITE_FIREBASE_API_KEY` is not the same as `VITE_PROJECT_ID` need to be prefixed with `demo-` [read firebase docs](https://firebase.google.com/docs/emulator-suite/connect_functions#:~:text=Project%20IDs%20for%20demo%20projects,use%20demo%20projects%20wherever%20possible.)
 
@@ -32,12 +32,8 @@ Frontend
 npm run setup
 ```
 
-Workaround for working with firebase FCM in dev mode ()
-```sh
-npm run build
-```
-Copy `firebase-messaging-sw-*.js` and manifest.webmanifest from [dist](dist) folder 
-to [public](public) folder
+Copy `firebase-messaging-sw-*.js` and `manifest.webmanifest` from [dist](dist) folder 
+to [public](public) folder (your will need to do that again after each you change those files)
 
 ### Run server and Hot-Reload for Development
 
