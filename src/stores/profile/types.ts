@@ -1,29 +1,13 @@
 import { Timestamp } from 'firebase/firestore'
-import type { IGroupDetails } from '@/stores/group/types'
-
-export interface IProfileDetails extends IGroupDetails {
-  [key: string]: string | undefined
-}
-export interface IProfileSkills {
-  [key: string]: string
-}
-export interface IProfileEquipment {
-  [key: string]: string
-}
 
 export interface INewProfile {
   id?: string
-  groupId?: string
-  details?: IProfileDetails
-  skills?: IProfileSkills
-  equipment?: IProfileEquipment
   createdAt?: Timestamp
   updatedAt?: Timestamp
 }
 
 export interface IProfile extends INewProfile {
   id: string
-  groupId: string
   createdAt: Timestamp
   updatedAt: Timestamp
 }

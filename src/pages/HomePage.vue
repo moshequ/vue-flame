@@ -20,25 +20,17 @@ import PushNotifyButton from '@/components/PushNotifyButton.vue'
 const { t } = useI18n()
 
 import AppBar from '@/components/AppBar.vue'
-import { useGroupStore } from '@/stores/group'
-import { router } from '@/router'
-const groupStore = useGroupStore()
 
-if (groupStore.item.id) {
-  router.replace({ name: 'group', params: { groupId: groupStore.item.id } })
-} else {
-  router.replace({ name: 'create-group' })
-}
 </script>
 
 <i18n>
 {
   "en": {
-    "welcome": "Welcome to Vueflame.",
+    "welcome": "Welcome to Getters",
     "comingSoon": "Coming Soon"
   },
   "he": {
-    "welcome": "ברוכים הבאים ללהבת ויו.",
+    "welcome": "ברוכים הבאים לגטרס.",
     "comingSoon": "בקרוב יהיה זמין"
   }
 }

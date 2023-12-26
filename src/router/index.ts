@@ -6,10 +6,3 @@ export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: getLocaleRoutes(routes)
 })
-
-router.beforeEach(async (to, from, next) => {
-  if (to.params.groupId && typeof to.params.groupId === 'string') {
-    localStorage.setItem('groupId', to.params.groupId as string)
-  }
-  next()
-})
