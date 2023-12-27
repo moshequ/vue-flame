@@ -97,5 +97,11 @@ Allow firebase to deploy:
 
 
 ### Troubleshooting
-If you get 403, PERMISSION_DENIED error when running `npm run emulators:dev`, try change the `VITE_PROJECT_ID` in `.env` from `demo-<your-project-id>` to `<your-project-id>` and run `npm run emulators:dev` again,
+If you get 403, PERMISSION_DENIED error when running `npm run emulators:dev`, remove the demo prefix and run `npm run emulators:dev` again
+this code is in the `src/firebase-messaging-sw.ts` and in `src/plugins/firebase.ts`
+```
+if (location?.hostname === 'localhost') {
+    firebaseConfig.projectId = 'demo-' + firebaseConfig.projectId
+}
+```
 but then you will need to change it back or firestore UI will not work in the emulator

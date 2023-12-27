@@ -32,10 +32,9 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_MEASUREMNET_ID
 }
 
-// if (location?.hostname === 'localhost') {
-//   firebaseConfig.authDomain = 'demo-' + firebaseConfig.authDomain
-//   firebaseConfig.projectId = 'demo-' + firebaseConfig.projectId
-// }
+if (location?.hostname === 'localhost') {
+  firebaseConfig.projectId = 'demo-' + firebaseConfig.projectId
+}
 
 // Initialize Firebase and get the messaging module
 const firebaseApp = firebase.initializeApp(firebaseConfig)
