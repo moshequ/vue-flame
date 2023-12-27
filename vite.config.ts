@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import ViteFonts from 'unplugin-fonts/vite'
 
 // Utilities
 import { defineConfig } from 'vite'
@@ -20,17 +21,20 @@ export default defineConfig({
       template: { transformAssetUrls }
     }),
     vuetify(),
-    //import ViteFonts from 'unplugin-fonts/vite'
-    // ViteFonts({
-    //   google: {
-    //     families: [
-    //       {
-    //         name: 'Roboto',
-    //         styles: 'wght@100;300;400;500;700;900'
-    //       }
-    //     ]
-    //   }
-    // }),
+    ViteFonts({
+      google: {
+        families: [
+          {
+            name: 'Roboto',
+            styles: 'wght@100;300;400;500;700;900'
+          },
+          {
+            name: 'Rubik',
+            styles: 'wght@100;300;400;500;700;900'
+          }
+        ]
+      }
+    }),
     // npx pwa-asset-generator logo.png icons
     VitePWA({
       // injectRegister: null,
