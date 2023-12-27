@@ -5,7 +5,7 @@
  */
 
 // Styles
-import 'vuetify/styles'
+import '@/styles/main.scss'
 
 // Composables
 import { createVuetify } from 'vuetify'

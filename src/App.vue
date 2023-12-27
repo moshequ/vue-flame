@@ -36,18 +36,3 @@ watch(
   }
 )
 </script>
-
-<style>
-.v-locale--is-rtl .rx {
-  flex-direction: row-reverse !important;
-}
-.v-locale--is-rtl .fx {
-  transform: rotate(180deg);
-}
-.v-locale--is-rtl .dp__menu {
-  direction: rtl;
-}
-.firebase-emulator-warning {
-  opacity: 0.75;
-}
-</style>
