@@ -24,7 +24,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "export:dev": "npx -p node-firestore-import-export firestore-export -a credentials.dev.json -b backup.dev-$(date \"+%s\")${npm_config_before_import}.json",
-    "import:dev": "npm run export:dev --before_import=before_import && npx -p node-firestore-import-export firestore-import -a credentials.dev.json -b ${npm_config_path}"
+    "import:dev": "npm run export:dev --before_import=before_import && npx -p node-firestore-import-export firestore-import -a credentials.dev.json -b ${npm_config_path}",
+    "generate-pwa-assets": "npx pwa-asset-generator assets/logo.svg public/icons --favicon --mstile"
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^7.4.0",

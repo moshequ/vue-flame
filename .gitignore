@@ -25,6 +25,8 @@ backup.*.json
 backup.json
 *.env*
 *env.*
+!.env
+functions/.env
 !.env.example
 !env.d.ts
 *-firebase-adminsdk-*.json

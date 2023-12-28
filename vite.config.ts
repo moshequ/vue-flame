@@ -35,7 +35,7 @@ export default defineConfig({
         ]
       }
     }),
-    // npx pwa-asset-generator logo.png icons
+    // npm run generate-pwa-assets
     VitePWA({
       // injectRegister: null,
       // injectManifest: {
@@ -43,7 +43,7 @@ export default defineConfig({
       // },
       registerType: 'autoUpdate',
       devOptions: {
-        enabled: false,
+        enabled: true,
         type: 'module'
         // navigateFallback: 'index.html'
       },
@@ -52,7 +52,7 @@ export default defineConfig({
         skipWaiting: true,
         clientsClaim: true,
 
-        importScripts: [`./firebase-messaging-sw-${hash}.js`]
+        importScripts: [`./firebase-messaging-sw-${hash}.js?v=1`]
       },
       manifest: {
         name: 'Vueflame',
@@ -62,45 +62,45 @@ export default defineConfig({
         theme_color: '#000000',
         icons: [
           {
-            src: 'icons/manifest-icon-192.maskable.png',
+            src: 'icons/manifest-icon-192.maskable.png?v=1',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'icons/manifest-icon-192.maskable.png',
+            src: 'icons/manifest-icon-192.maskable.png?v=1',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable'
           },
           {
-            src: 'icons/manifest-icon-512.maskable.png',
+            src: 'icons/manifest-icon-512.maskable.png?v=1',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'icons/manifest-icon-512.maskable.png',
+            src: 'icons/manifest-icon-512.maskable.png?v=1',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
           }
         ],
-        description: 'Get More',
+        description: 'Vueflame description',
         screenshots: [
           {
-            src: 'icons/apple-splash-1668-2388.jpg',
-            sizes: '1668x2388',
-            type: 'image/jpg',
+            src: 'screenshots/home.png?v=1',
+            sizes: '442x602',
+            type: 'image/png',
             form_factor: 'wide',
-            label: 'Wonder Widgets'
+            label: 'Home Page'
           },
           {
-            src: 'icons/apple-splash-828-1792.jpg',
-            sizes: '828x1792',
-            type: 'image/jpg',
+            src: 'screenshots/home-narrow.png?v=1',
+            sizes: '320x436',
+            type: 'image/png',
             form_factor: 'narrow',
-            label: 'Wonder Widgets'
+            label: 'Home Page'
           }
         ]
       }
