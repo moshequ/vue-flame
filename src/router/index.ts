@@ -1,8 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from '@/router/routes'
 import { getLocaleRoutes } from '@/lib/i18n'
+import DefaultLayout from '@/components/DefaultLayout.vue'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: getLocaleRoutes(routes)
+  routes: [
+    {
+      path: '/',
+      component: DefaultLayout,
+      children: getLocaleRoutes(routes)
+    }
+  ]
 })

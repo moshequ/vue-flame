@@ -1,38 +1,28 @@
 <template>
-  <v-progress-linear :indeterminate="loading" />
-
-  <v-app v-if="!loading">
+  <v-app class="bg-sky">
+    <v-progress-linear :indeterminate="loading" />
     <v-container v-if="error" class="mt-16">
       <v-alert type="error">{{ error }}</v-alert>
     </v-container>
-    <RouterView />
+
+    <RouterView v-if="!loading" />
   </v-app>
 </template>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
 import { useProfileStore } from '@/stores/profile'
-import { ref, watch } from 'vue'
-import { vuetify } from '@/plugins/vuetify'
+import { ref } from 'vue'
 
 const error = ref('')
 const loading = ref(true)
+
+// TODO: load only when you need it
 Promise.all([useProfileStore().fetch()])
   .catch((err) => {
     error.value = err
-    console.error(error)
+    console.error('error fetching user data', error)
   })
   .finally(() => {
     loading.value = false
   })
-
-watch(
-  () => vuetify.locale.rtlClasses.value,
-  (value, oldValue) => {
-    if (value !== oldValue) {
-      if (value) document.body.classList.add(value)
-      if (oldValue) document.body.classList.remove(oldValue)
-    }
-  }
-)
 </script>

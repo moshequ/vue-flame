@@ -15,19 +15,14 @@ const useStore: StoreDefinition<typeof storeName, IState, Getters, Actions> = de
       return {
         loading: true,
         auth: undefined,
+        isAdmin: undefined,
         errorCode: '',
         errorMsg: ''
       } as IState
     },
     getters: {
-      isAuthenticated: async (state: IState) => {
+      isAuthenticated: (state: IState) => {
         return Boolean(state.auth)
-      },
-      isAdmin: async (state: IState) => {
-        return state.auth
-          ?.getIdTokenResult()
-          .then((idTokenResult) => idTokenResult.claims.role === 'admin')
-          .catch((error) => console.error(error))
       }
     },
     actions: {

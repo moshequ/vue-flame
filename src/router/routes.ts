@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { EProtection } from '@/lib/auth/types'
 import { routes as authRoutes, options } from '@/lib/auth'
 
-export const routes: Readonly<RouteRecordRaw[]> = [
+export const routes: RouteRecordRaw[] = [
   ...authRoutes,
   {
     path: options.usersRootPath,

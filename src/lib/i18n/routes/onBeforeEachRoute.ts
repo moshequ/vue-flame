@@ -35,14 +35,16 @@ export const getLocale = (toLocale?: ELocales | string | null) => {
 }
 
 const addOrUpdateLocale = (fullPath: string, code: ELocales) => {
-  const segments = fullPath.split('/').filter(Boolean)
+  const path = fullPath.split(/[?#]/)[0]
+  const qsAndHash = fullPath.substring(path.length)
+  const segments = path.split('/').filter(Boolean)
   const firstSegment = (segments[0] || '') as ELocales
 
   if (!getCountryOrLangCode(firstSegment)) {
-    return '/' + [code, ...segments].join('/')
+    return '/' + [code, ...segments].join('/') + qsAndHash
   }
 
-  return '/' + [code, ...segments.slice(1)].join('/')
+  return '/' + [code, ...segments.slice(1)].join('/') + qsAndHash
 }
 
 export const onBeforeEachRoute = () => {
@@ -68,6 +70,6 @@ export const onBeforeEachRoute = () => {
 
     const fullPath = addOrUpdateLocale(to.fullPath, code)
 
-    return fullPath === to.fullPath ? next() : next({ path: fullPath })
+    return fullPath === to.fullPath ? next() : next(fullPath)
   })
 }

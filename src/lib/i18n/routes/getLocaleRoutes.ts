@@ -1,9 +1,7 @@
 import { RouterView } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
-export const getLocaleRoutes = (
-  children: Readonly<RouteRecordRaw[]>
-): Readonly<RouteRecordRaw[]> => {
+export const getLocaleRoutes = (children: RouteRecordRaw[]): RouteRecordRaw[] => {
   const localePath = '/:locale'
   return [
     {
@@ -16,7 +14,7 @@ export const getLocaleRoutes = (
       children: children.map((route) => {
         return {
           ...route,
-          path: localePath + route.path
+          path: localePath + (route.path || '')
         }
       })
     }

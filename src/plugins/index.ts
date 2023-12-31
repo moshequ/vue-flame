@@ -11,6 +11,7 @@ import { router } from '@/router'
 import { vuetify } from '@/plugins/vuetify'
 import type { App } from 'vue'
 import { createDatepicker } from '@/plugins/datepicker'
+import { createPwa } from '@/lib/pwa'
 
 export function registerPlugins(app: App) {
   app.config.globalProperties.$vuetify = vuetify as any
@@ -18,4 +19,5 @@ export function registerPlugins(app: App) {
 
   // TODO: Remove once datepicker is available in vuetify 3
   createDatepicker(app)
+  createPwa()
 }

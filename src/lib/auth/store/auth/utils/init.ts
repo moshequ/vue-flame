@@ -12,11 +12,13 @@ const onAuthStateChangedPromise = () =>
     onAuthStateChanged(
       firebaseAuth,
       async (auth) => {
+        // TODO: reset state on logout and clear user cache (SW)
         const { $route, $router } = globals.app!.config.globalProperties
         const { meta } = $route
         const { protection } = meta as { protection: EProtection }
         const oldAuth = authStore.auth
         authStore.auth = auth
+        authStore.isAdmin = (await auth?.getIdTokenResult())?.claims.role === 'admin'
         authStore.loading = false
 
         // this handles the sign in/sign out (not the first load)

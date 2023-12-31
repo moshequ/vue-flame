@@ -44,8 +44,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       devOptions: {
         enabled: true,
-        type: 'module'
-        // navigateFallback: 'index.html'
+        type: 'module',
+        navigateFallback: 'index.html?mode=standalone'
       },
       workbox: {
         sourcemap: true,
@@ -58,7 +58,7 @@ export default defineConfig({
         name: 'Vueflame',
         short_name: 'Vueflame',
         id: 'il.co.vueflame',
-        start_url: '.',
+        start_url: './?mode=standalone',
         theme_color: '#000000',
         icons: [
           {

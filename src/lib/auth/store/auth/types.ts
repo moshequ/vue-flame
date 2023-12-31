@@ -5,14 +5,14 @@ export type TAuth = User | null | undefined
 
 export interface IState {
   loading: boolean
-  auth?: TAuth
+  auth: TAuth | undefined
+  isAdmin: boolean | undefined
   errorCode: string
   errorMsg: string
 }
 
 export interface Getters {
-  isAuthenticated: (state: IState) => Promise<boolean>
-  isAdmin: (state: IState) => Promise<boolean>
+  isAuthenticated: (state: IState) => boolean
 }
 
 export type TPayload = Partial<{ email: string; password: string }>

@@ -4,7 +4,7 @@ import { options, useAuthStore } from '../../../'
 export async function getLocation(protection: EProtection) {
   const authStore = useAuthStore()
 
-  if (protection === EProtection.ADMIN_ONLY && !(await authStore.isAdmin)) {
+  if (protection === EProtection.ADMIN_ONLY && !authStore.isAdmin) {
     return { path: `${options.usersRootPath}` }
   }
 

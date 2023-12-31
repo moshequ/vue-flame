@@ -15,14 +15,13 @@
 
 <script setup lang="ts">
 import LocaleSwitcher from '@/lib/i18n/components/LocaleSwitcher.vue'
-import PwaInstallButton from '@/components/PwaInstallButton.vue'
 import LogoutButton from '@/components/LogoutButton.vue'
 import { useI18n } from 'vue-i18n'
 import PushNotifyButton from '@/components/PushNotifyButton.vue'
-const { t } = useI18n()
-
 import AppBar from '@/components/AppBar.vue'
+import PwaInstallButton from '@/lib/pwa/components/PwaInstallButton.vue'
 
+const { t } = useI18n()
 </script>
 
 <i18n>
