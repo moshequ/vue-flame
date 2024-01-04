@@ -1,4 +1,4 @@
-# Vue Firebase Auth
+# Vue PWA plugin
 
 ## Description
 

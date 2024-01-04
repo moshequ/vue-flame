@@ -37,8 +37,15 @@ to [public](public) folder (your will need to do that again after each you chang
 
 ### Run server and Hot-Reload for Development
 
+Run frontend dev server
 ```sh
 npm run emulators:dev
+```
+
+Run backend dev server
+```sh
+cd functions 
+npm run build:watch
 ```
 
 ### Run server and Minify for Production

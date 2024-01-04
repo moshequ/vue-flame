@@ -5,32 +5,32 @@ module.exports = {
     node: true,
   },
   extends: [
-    'eslint:recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
-    'google',
-    'plugin:@typescript-eslint/recommended',
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "google",
+    "plugin:@typescript-eslint/recommended",
   ],
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: ['tsconfig.json', 'tsconfig.dev.json'],
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
+    project: ["tsconfig.json", "tsconfig.dev.json"],
+    sourceType: "module",
   },
   ignorePatterns: [
-    '/dist/**/*', // Ignore built files.
+    "/lib/**/*", // Ignore built files.
   ],
   plugins: [
-    '@typescript-eslint',
-    'import',
+    "@typescript-eslint",
+    "import",
   ],
   rules: {
-    'import/no-unresolved': 0,
-    'semi': [2, 'never'],
-    'object-curly-spacing': [2, 'always'],
+    "import/no-unresolved": 0,
+    "semi": "off",
+    "object-curly-spacing": [2, "always"],
     'max-len': 'off',
-    'eol-last': 0,
-    'comma-dangle': 'off',
+    "eol-last": 0,
+    "comma-dangle": "off",
+    "indent": ['error', 2, { "MemberExpression": 1 }],
   },
-}
+};
