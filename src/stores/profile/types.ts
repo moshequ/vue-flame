@@ -30,5 +30,5 @@ export interface Getters {
 export interface Actions {
   fetch(): Promise<IProfile[]>
   upsert(payload: INewProfile): Promise<IProfile>
-  remove(payload: IProfile): Promise<IProfile>
+  remove(payload: INewProfile): Promise<IProfile>
 }
