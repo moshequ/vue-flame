@@ -4,9 +4,10 @@ import { FirebaseError } from '@firebase/util'
 import { setError } from './utils/setError'
 import type { Actions, IState, Getters, IProfile, TProfiles } from './types'
 import { getTimestamps } from '@/stores/utils/getTimestamps'
-import { fetchDocs, removeDoc, upsertDoc } from '@/stores/utils/upsertDoc'
+import { fetchDocs, removeDocs, upsertDocs } from '@/stores/utils/upsertDocs'
 import { getInitials } from '@/stores/profile/utils/getInitials'
 import { useRoute } from 'vue-router'
+import { pushById, updateOrPushById } from '@/stores/utils/updateOrPushById'
 
 const storeName = 'profile'
 
@@ -57,21 +58,21 @@ const useStore: StoreDefinition<typeof storeName, IState, Getters, Actions> = de
           throw error
         }
       },
-      async upsert(payload) {
+      async upsert(payloads) {
         const store = useStore()
         store.loading = true
         setError()
 
         try {
-          const ts = getTimestamps(payload)
-          const doc = await upsertDoc<TItem>(storeName, { ...payload, ...ts })
-
-          store.list = store.byId[doc.id]
-            ? (store.list = store.list.map((item) => (item.id === doc.id ? doc : item)))
-            : (store.list = [...store.list, doc])
+          const docs = await upsertDocs<TItem>(storeName, payloads)
+          docs.forEach((doc) => {
+            store.list = store.byId[doc.id]
+              ? pushById(store.list, doc)
+              : updateOrPushById<TItem>(store.list, doc, doc.id)
+          })
 
           store.loading = false
-          return doc
+          return docs
         } catch (error: unknown) {
           setError(error as FirebaseError)
           console.error(error)
@@ -79,16 +80,17 @@ const useStore: StoreDefinition<typeof storeName, IState, Getters, Actions> = de
           throw error
         }
       },
-      async remove(payload) {
+      async remove(payloads) {
         const store = useStore()
         store.loading = true
         setError()
 
         try {
-          const doc = await removeDoc(storeName, payload)
-          store.list = store.list.filter((item) => item.id !== doc.id)
+          const docs = await removeDocs<TItem>(storeName, payloads)
+          const docsSet = new Set(docs.map((doc) => doc.id))
+          store.list = store.list.filter((item) => !docsSet.has(item.id))
           store.loading = false
-          return doc
+          return docs
         } catch (error: unknown) {
           setError(error as FirebaseError)
           console.error(error)
