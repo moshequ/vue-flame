@@ -8,8 +8,8 @@ export async function processArrayInBatches<T>(
 
   for (let i = 0; i < array.length; i += batchSize) {
     const batch = array.slice(i, i + batchSize)
-    results.push(await callback(...args, batch))
+    results.push(callback(...args, batch))
   }
 
-  return results.flat()
+  return (await Promise.all(results)).flat()
 }

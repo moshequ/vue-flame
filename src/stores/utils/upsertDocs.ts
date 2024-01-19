@@ -38,7 +38,7 @@ async function processUpsertDocs<T extends INewDoc>(storeName: string, payloads:
     batch.set(doc(db, storeName, key), { ...payload, ...ts })
 
     return {
-      id,
+      id: key,
       ...payload,
       updatedAt: payload.updatedAt || Timestamp.fromDate(new Date()),
       createdAt: payload.createdAt || Timestamp.fromDate(new Date())

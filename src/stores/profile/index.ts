@@ -7,7 +7,7 @@ import { getTimestamps } from '@/stores/utils/getTimestamps'
 import { fetchDocs, removeDocs, upsertDocs } from '@/stores/utils/upsertDocs'
 import { getInitials } from '@/stores/profile/utils/getInitials'
 import { useRoute } from 'vue-router'
-import { pushById, updateOrPushById } from '@/stores/utils/updateOrPushById'
+import { updateByKeyOrPush } from '@/stores/utils/updateByKeyOrPush'
 
 const storeName = 'profile'
 
@@ -67,8 +67,8 @@ const useStore: StoreDefinition<typeof storeName, IState, Getters, Actions> = de
           const docs = await upsertDocs<TItem>(storeName, payloads)
           docs.forEach((doc) => {
             store.list = store.byId[doc.id]
-              ? pushById(store.list, doc)
-              : updateOrPushById<TItem>(store.list, doc, doc.id)
+              ? [...store.list, doc]
+              : updateByKeyOrPush<TItem>(store.list, doc, doc.id)
           })
 
           store.loading = false
