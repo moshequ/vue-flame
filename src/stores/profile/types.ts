@@ -2,6 +2,12 @@ import { Timestamp } from 'firebase/firestore'
 
 export interface INewProfile {
   id?: string
+  details?: {
+    name?: string
+    email?: string
+    phone?: string
+    avatar?: string
+  }
   createdAt?: Timestamp
   updatedAt?: Timestamp
 }
@@ -30,5 +36,5 @@ export interface Getters {
 export interface Actions {
   fetch(): Promise<IProfile[]>
   upsert(payloads: INewProfile[]): Promise<IProfile[]>
-  remove(payloads: INewProfile[]): Promise<IProfile[]>
+  remove(payloads: IProfile[]): Promise<IProfile[]>
 }
