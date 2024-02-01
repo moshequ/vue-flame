@@ -83,7 +83,7 @@ npm run lint
 ```
 
 ### Configure GitHub actions (init via Firebase)
-Run this `firebase init hosting:github` to regenerate `.github` folder and authorized firebase to deploy to github (delete `.github` folder before running this command
+Run this `firebase init hosting:github` to regenerate `.github` folder and authorized firebase to deploy to GitHub (delete `.github` folder before running this command) read [here for manual setup](https://github.com/FirebaseExtended/action-hosting-deploy/blob/main/docs/service-account.md)
 
 Protect `main` branch (only after initial commit):
 * Go to Settings -> Branches -> Add rule (or edit existing rule) -> Add `main` branch
